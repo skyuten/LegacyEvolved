@@ -2473,6 +2473,7 @@
     <ClInclude Include="DropperTileEntity.h" />
     <ClInclude Include="DummyCriteria.h" />
     <ClInclude Include="EmptyMapItem.h" />
+    <ClInclude Include="Endermite.h" />
     <ClInclude Include="EntityTile.h" />
     <ClInclude Include="FireworksChargeItem.h" />
     <ClInclude Include="FireworksItem.h" />
@@ -2833,6 +2834,7 @@
     <ClInclude Include="SwampRiversLayer.h" />
     <ClInclude Include="SwellGoal.h" />
     <ClInclude Include="TakeFlowerGoal.h" />
+    <ClInclude Include="Tallgrass2.h" />
     <ClInclude Include="TamableAnimal.h" />
     <ClInclude Include="TargetGoal.h" />
     <ClInclude Include="Team.h" />
@@ -2848,6 +2850,7 @@
     <ClInclude Include="TripWireSourceTile.h" />
     <ClInclude Include="TripWireTile.h" />
     <ClInclude Include="UpdateAttributesPacket.h" />
+    <ClInclude Include="Vec3i.h" />
     <ClInclude Include="Village.h" />
     <ClInclude Include="VillagerGolem.h" />
     <ClInclude Include="Villages.h" />
@@ -3559,6 +3562,7 @@
     <ClCompile Include="DropperTileEntity.cpp" />
     <ClCompile Include="DummyCriteria.cpp" />
     <ClCompile Include="EmptyMapItem.cpp" />
+    <ClCompile Include="Endermite.cpp" />
     <ClCompile Include="FireworksChargeItem.cpp" />
     <ClCompile Include="FireworksItem.cpp" />
     <ClCompile Include="FireworksMenu.cpp" />
@@ -3675,8 +3679,10 @@
     <ClCompile Include="StoneButtonTile.cpp" />
     <ClCompile Include="StructureFeatureIO.cpp" />
     <ClCompile Include="StructureFeatureSavedData.cpp" />
+    <ClCompile Include="Tallgrass2.cpp" />
     <ClCompile Include="Team.cpp" />
     <ClCompile Include="TreeTile2.cpp" />
+    <ClCompile Include="Vec3i.cpp" />
     <ClCompile Include="WeightedPressurePlateTile.cpp" />
     <ClCompile Include="WoodButtonTile.cpp" />
     <ClCompile Include="WoolTileItem.cpp" />
