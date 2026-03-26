@@ -6,6 +6,7 @@ class Random;
 class StoneTile : public Tile
 {
 public:
+	static const int TYPE_DEFAULT = 0;
 	static const int GRANITE = 1;
 	static const int POLISHED_GRANITE = 2;
 	static const int DIORITE = 3;
@@ -15,6 +16,7 @@ public:
 
 	static const int STONE_NAMES_LENGTH = 7;
 
+	static const unsigned int STONE_DESCRIPTIONS[STONE_NAMES_LENGTH];
 	static const unsigned int STONE_NAMES[STONE_NAMES_LENGTH];
 	static const wstring TEXTURE_NAMES[];
 private:

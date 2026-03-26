@@ -359,14 +359,17 @@ void GameRenderer::pick(float a)
 	}
 }
 
+// Toru - wrapping these methods for backwards compatibility,
+// no longer setting m_fov as its use doesn't respect applyEffects param in GameRenderer::getFov
 void GameRenderer::SetFovVal(float fov)
 {
-	m_fov=fov;
+	//m_fov=fov;
+	mc->options->set(Options::Option::FOV, (fov - 70) / 40);
 }
 
 float GameRenderer::GetFovVal()
 {
-	return m_fov;
+	return 70 + mc->options->fov * 40;//m_fov;
 }
 
 void GameRenderer::tickFov()
@@ -390,6 +393,8 @@ float GameRenderer::getFov(float a, bool applyEffects)
 	shared_ptr<LocalPlayer> player = dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer);
 	int playerIdx = player ? player->GetXboxPad() : 0;
 	float fov = m_fov;//70;
+	if (fov < 1) fov = 1; // Crash fix
+	
 	if (applyEffects)
 	{
 		fov += mc->options->fov * 40;
@@ -1533,22 +1538,21 @@ void GameRenderer::renderLevel(float a, int64_t until)
 
 			glBlendFunc(GL_ZERO, GL_ONE);
 			PIXBeginNamedEvent(0,"Fancy second pass - writing z");
-			int visibleWaterChunks = levelRenderer->render(cameraEntity, 1, a, updateChunks);
+			glBlendFunc(GL_ZERO, GL_ONE);
+			glEnable(GL_CULL_FACE);
+
+			levelRenderer->render(cameraEntity, 2, a, updateChunks);
 			PIXEndNamedEvent();
+
+			PIXBeginNamedEvent(0, "Fancy second pass - actual render");
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			levelRenderer->render(cameraEntity, 2, a, updateChunks);	// 4J - chanaged, used to be renderSameAsLast but we don't support that anymore
+			PIXEndNamedEvent();
 
-			if (visibleWaterChunks > 0)
-			{
-				PIXBeginNamedEvent(0,"Fancy second pass - actual rendering");
-				levelRenderer->render(cameraEntity, 1, a, updateChunks);	// 4J - chanaged, used to be renderSameAsLast but we don't support that anymore
-				PIXEndNamedEvent();
-			}
+			// @Patoke todo: implement, this is really important for rendering of order independent alpha objects
+			// RenderManager.BeginOrderIndependentAlpha();
 
-			GL11::glShadeModel(GL11::GL_FLAT);
-		}
-		else
-		{
-			PIXBeginNamedEvent(0,"Second pass level render");
+			PIXBeginNamedEvent(0, "Fancy second pass - actual rendering");
 			levelRenderer->render(cameraEntity, 1, a, updateChunks);
 			PIXEndNamedEvent();
 		}
@@ -1563,6 +1567,8 @@ void GameRenderer::renderLevel(float a, int64_t until)
 		particleEngine->render(cameraEntity, a, ParticleEngine::TRANSLUCENT_LIST);
 		PIXEndNamedEvent();
 		turnOffLightLayer(a);		// 4J - brought forward from 1.8.2
+		// @Patoke todo: implement
+		// RenderManager.EndOrderIndependentAlpha();
 		////////////////////////// End of 4J added section
 
 		glDepthMask(true);
