@@ -17,7 +17,6 @@ bool HalfTransparentTile::isSolidRender(bool isServerLevel)
 bool HalfTransparentTile::shouldRenderFace(LevelSource *level, int x, int y, int z, int face)
 {
     int id = level->getTile(x, y, z);
-
 	if (this->id == 95) // Tile::stained_glass
 	{
 		bool isBlocking = level->isTopSolidBlocking(x, y, z);

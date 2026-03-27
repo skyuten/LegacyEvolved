@@ -6,6 +6,7 @@ using namespace std;
 #include "WeighedRandom.h"
 #include "BlockPos.h"
 #include "ChunkPrimer.h"
+#include "DoublePlantFeature.h"
 
 
 class Feature;
@@ -51,20 +52,48 @@ public:
     static Biome *smallerExtremeHills;
     static Biome *jungle;
     static Biome *jungleHills;
-    static Biome *savanna;
+    static Biome *jungleEdge;
+    static Biome *deepOcean;
+    static Biome *stoneBeach;
+    static Biome *coldBeach;
+    static Biome *birchForest;
+    static Biome *birchForestHills ;
     static Biome *roofedForest;
-
+    static Biome *coldTaiga;
+    static Biome *coldTaigaHills;
+    static Biome *megaTaiga;
+    static Biome *megaTaigaHills;
+    static Biome *extremeHills_plus;
+    static Biome *savanna;
+    static Biome *savannaPlateau;
+    static Biome *mesa;
+    static Biome *mesaPlateauF;
+    static Biome *mesaPlateau;
+    static Biome *theVoid;
+    static Biome *sunflowersPlains;
+    static Biome *desertM;
+    static Biome *extremeHillsM;
     static Biome *flowerForest;
-    static Biome *Biome::birchForest;
-
-    static Biome *Biome::birchForestHills ;
-
-    static Biome *Biome::birchForestM ;
-
-    static Biome *Biome::birchForestHillsM;
-
-    static Biome *Biome::roofedForestM;
-    static Biome *Biome::deepOcean;
+    static Biome *taigaM;
+    static Biome *swamplandM;
+    static Biome *iceSpikes;
+    static Biome *jungleM;
+    static Biome *jungleEdgeM;
+    static Biome *birchForestM ;
+    static Biome *birchForestHillsM;
+    static Biome *roofedForestM;
+    static Biome *coldTaigaM;
+    static Biome *redwoodTaiga;
+    static Biome *redwoodTaigaHills;
+    static Biome *extremeHills_plusM;
+    static Biome *savannaM;
+    static Biome *savannaPlateauM;
+    static Biome *mesaBryce;
+    static Biome *mesaPlateauFM;
+    static Biome *mesaPlateauM;
+    
+  
+    
 
     static const int BIOME_COUNT = 256 ;
 
@@ -79,8 +108,11 @@ public:
     float temperature;
     float downfall;
 
+
     BiomeDecorator *decorator;
     PerlinNoise *m_temperatureNoise;
+    PerlinNoise  *GRASS_COLOR_NOISE;
+    DoublePlantFeature  *DOUBLE_PLANT_GENERATOR;
 
     const int id;
 
